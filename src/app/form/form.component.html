@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input formControlName="name" type="text" name="name" id="" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <textarea formControlName="address" name="address" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>age</label>
+                    <input type="number" formControlName="age" name="age" id="" class="form-control">
+                </div>
+
+                <hr />
+
+                <h4 class="mb-4">Add member data</h4>
+                <div class="row">
+                    <div class="col-xs-12" formArrayName="members">
+                        <div class="row" *ngFor="let member of memberControls; let i = index" [formGroupName]="i">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input formControlName="mname" type="text" name="mname" id="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Mobile</label>
+                                    <input formControlName="mobile" type="number" name="mobile" id=""
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Occupation</label>
+                                    <input formControlName="occupation" type="text" name="occupation" id=""
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <button type='button' class="btn btn-outline-danger"
+                                    (click)="onDeleteMember(i)">X</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-outline-primary" (click)="onAddMember()">Add
+
+                </button>
+                <div>
+                    <button type="submit" class="btn btn-primary m-2"
+                        [disabled]="form.invalid">{{ editMode ? 'Update': 'Add' }} Data</button>
+
+                    <button *ngIf="editMode " type="button" class="btn btn-danger m-2" (click)="onDeleteUser(id)">
+                        DELETE</button>
+
+                    <button type="button" class="btn btn-outline-danger m-2">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

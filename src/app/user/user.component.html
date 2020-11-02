@@ -1,0 +1,16 @@
+<div *ngIf="!users.length"> No users</div>
+
+<div *ngFor="let user of users; let i = index" (click)="onUserSelect(i)">
+    {{ user.name }}
+    {{ user.address }}
+    {{ user.age }}
+    <ul>
+        <li *ngFor="let member of user.members">
+            <div>
+                {{ member.mname }}
+                {{ member.mobile }}
+                {{ member.occupation }}
+            </div>
+        </li>
+    </ul>
+</div>
